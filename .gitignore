@@ -1,0 +1,11 @@
+# os
+.idea/
+
+# database
+db.sqlite3
+
+# virtualenv
+venv/
+
+# stati files
+static/
