@@ -126,7 +126,9 @@ STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')), )
 STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
+# media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # site configs:
 """ redirection """

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.html import format_html
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -22,6 +23,7 @@ class Article(models.Model):
     title = models.CharField(max_length=150, verbose_name='عنوان')
     slug = models.SlugField(max_length=170, unique=True, verbose_name='اسلاگ')
     thumbnail = models.ImageField(upload_to='images/article_thumbnail/', verbose_name='تصویر مقاله')
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='نویسنده', related_name='articles')
     category = models.ManyToManyField('Category', verbose_name='دسته بندی', related_name='articles')
     content = models.TextField(verbose_name='متن')
     created_at = models.DateTimeField(auto_now_add=timezone.now, verbose_name='تاریخ ایجاد')

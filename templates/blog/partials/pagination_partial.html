@@ -1,0 +1,10 @@
+<div class="pagination">
+    <span>
+        {% if page_obj.has_previous %}
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'blog:home' %}?page={{ page_obj.previous_page_number }}">پست های جدید</a></div>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'blog:home' %}?page={{ page_obj.next_page_number }}">پست های قدیمی تر</a></div>
+        {% endif %}
+    </span>
+</div>
