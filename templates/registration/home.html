@@ -4,5 +4,60 @@
 لیست مقالات
 {% endblock %}
 {% block main %}
-<h2>خوش آمدید{{ user.username }}</h2>
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <thead>
+                    <tr style="font-size: 85%">
+                      <th>عنوان مقاله</th>
+{#                      <th>اسلاگ</th>#}
+                      <th>تصویر</th>
+                      <th>نویسنده</th>
+                      <th>دسته بندی</th>
+                      <th>تاریخ انتشار</th>
+                      <th>آخرین ویرایش</th>
+                      <th>وضعیت انتشار</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for article in articles %}
+                        <tr style="font-size: 90%">
+                        <td>{{ article.title }}</td>
+{#                        <td>{{ article.slug }}</td>#}
+                        <td><img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" style="width: 120px; overflow: scroll; border-radius: 5%"></td>
+                        <td>{{ article.author.get_full_name }}</td>
+                        <td>{{ article.get_category }}</td>
+                        <td>{{ article.publish_date|date:"SHORT_DATETIME_FORMAT" }}</td>
+                        <td>{{ article.last_update|date:"SHORT_DATETIME_FORMAT" }}</td>
+                        <td>
+                            {% if article.status == 'P' %}
+                                <span class="badge badge-success">منتشر شده</span>
+                                <a class="badge badge-primary" target="_blank" href="{% url 'blog:detail' article.slug %}">مشاهده مقاله در سایت</a>
+                            {% else %}
+                                <span class="badge badge-danger">پیش نویس</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
 {% endblock %}

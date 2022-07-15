@@ -1,0 +1,56 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block headTitle %}
+افزودن مقاله
+{% endblock %}
+{% block bodyTitle %}
+افزودن مقاله جدید
+{% endblock %}
+{% block main %}
+    <div class="col-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title float-left">اطلاعات را وارد کنید</h3>
+        </div>
+    <div class="card-body">
+    <form action="{% url 'account:create-article' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-6 mb-0">
+        {{ form.title|as_crispy_field }}
+      </div>
+      <div class="form-group col-6 mb-0">
+        {{ form.slug|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 mb-0">
+        {{ form.content|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-6 mb-0">
+        {{ form.category|as_crispy_field }}
+      </div>
+      <div class="form-group col-6 mb-0">
+        {{ form.thumbnail|as_crispy_field }}
+      </div>
+    </div>
+    <div class="row col-12">
+        <div class="col-3">
+        {{ form.author|as_crispy_field }}
+        </div>
+        <div class="col-3">
+        {{ form.status|as_crispy_field }}
+        </div>
+        <div class="col-3">
+        {{ form.publish_date|as_crispy_field }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">ثبت مقاله</button>
+    </form>
+    </div>
+    </div>
+    </div>
+{% endblock %}

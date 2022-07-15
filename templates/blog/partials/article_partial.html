@@ -6,9 +6,9 @@
                     <!-- Post preview-->
                 <div class="post-preview">
                     <a href="{% url 'blog:detail' article.slug %}">
-                        <h2 class="post-title">{{ article.title }}</h2>
-                        <h3 class="post-subtitle">{{ article.content|truncatewords:15 }}</h3>
+                        <h2 class="post-title">{{ article.title|safe }}</h2>
                     </a>
+                    <h3 class="post-subtitle">{{ article.content|truncatewords:15|safe }}</h3>
                     <p class="post-meta">
                         نوشته شده توسط
                         <a href="{% url 'blog:author-article' article.author.username %}">{{ article.author.get_full_name }}</a>

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.html import format_html
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 
@@ -38,6 +39,9 @@ class Article(models.Model):
         verbose_name = 'مقاله'
         verbose_name_plural = 'مقالات'
 
+    def get_absolute_url(self):
+        return reverse('account:home')
+
     def get_active_categories(self):
         return self.category.filter(is_active=True)
 
@@ -45,6 +49,11 @@ class Article(models.Model):
         return format_html(f"<img width=100em height=75em style='border-radius: 5px;' src={self.thumbnail.url}>")
 
     get_article_thumbnail.short_description = 'تصویر مقاله'
+
+    def get_category(self):
+        return ' , '.join([str(c) for c in self.get_active_categories()])
+
+    get_category.short_description = 'دسته بندی'
 
     objects = ArticleManager()
 

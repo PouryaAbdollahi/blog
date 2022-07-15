@@ -20,11 +20,6 @@ class ArticleAdmin(admin.ModelAdmin):
     actions = [make_published, make_drafted]
     prepopulated_fields = {'slug': ('title',)}
 
-    def get_category(self, obj):
-        return ' , '.join([str(c) for c in obj.get_active_categories()])
-
-    get_category.short_description = 'دسته بندی'
-
 
 @register(Category)
 class CategoryAdmin(admin.ModelAdmin):

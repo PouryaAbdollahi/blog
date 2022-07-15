@@ -9,13 +9,11 @@
             {% csrf_token %}
             <div class="form-account-title">
                 <label for="email-phone">ایمیل / شماره موبایل</label>
-{#                <input type="text" class="number-email-input" id="email-phone" name="email-account">#}
                 {{ form.username|add_class:"number-email-input" }}
             </div>
             <div class="form-account-title">
                 <label for="password">رمز عبور</label>
-                <a href="#" class="account-link-password">رمز خود را فراموش کرده ام</a>
-{#                <input type="password" class="password-input" name="password-account">#}
+{#                <a href="#" class="account-link-password">رمز خود را فراموش کرده ام</a>#}
                 {{ form.password|add_class:"password-input" }}
             </div>
 
