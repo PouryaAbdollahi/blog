@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+{{ category.title }}
+{% endblock %}
+{% block main %}
+    {% include 'blog/partials/header_partial.html' %}
+    <div class="col-md-10 col-lg-8 col-xl-7 d-flex justify-content-lg-center justify-content-md-center align-self-center">
+    <h2 class="alert alert-primary text-center">دسته بندی : {{ category.title }}</h2>
+    </div>
+    <hr>
+    {% include 'blog/partials/article_partial.html' with articles=articles %}
+{% endblock %}

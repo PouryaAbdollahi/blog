@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 {% block title %}
-
+{{ article.title }}
 {% endblock %}
 {% block main %}
 <header class="masthead" style="background-image: url('{{ article.thumbnail.url }}')">

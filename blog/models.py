@@ -21,7 +21,7 @@ class Article(models.Model):
         ('D', 'drafted')
     )
     title = models.CharField(max_length=150, verbose_name='عنوان')
-    slug = models.SlugField(max_length=170, unique=True, verbose_name='اسلاگ')
+    slug = models.SlugField(max_length=170, unique=True, allow_unicode=True, verbose_name='اسلاگ')
     thumbnail = models.ImageField(upload_to='images/article_thumbnail/', verbose_name='تصویر مقاله')
     author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='نویسنده', related_name='articles')
     category = models.ManyToManyField('Category', verbose_name='دسته بندی', related_name='articles')
