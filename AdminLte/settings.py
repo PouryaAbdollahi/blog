@@ -137,3 +137,5 @@ LOGIN_URL = ''
 LOGIN_REDIRECT_URL = 'account:home'
 """crispy config"""
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+"""authentication config"""
+AUTH_USER_MODEL = 'account.User'

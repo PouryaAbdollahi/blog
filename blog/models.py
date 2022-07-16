@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.html import format_html
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 # Create your models here.
+
+User = get_user_model()
 
 
 class ArticleManager(models.Manager):
@@ -22,9 +24,9 @@ class Article(models.Model):
         ('D', 'drafted')
     )
     title = models.CharField(max_length=150, verbose_name='عنوان')
-    slug = models.SlugField(max_length=170, unique=True, allow_unicode=True, verbose_name='اسلاگ')
+    slug = models.SlugField(max_length=170, unique=True, blank=True, allow_unicode=True, verbose_name='اسلاگ')
     thumbnail = models.ImageField(upload_to='images/article_thumbnail/', verbose_name='تصویر مقاله')
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='نویسنده', related_name='articles')
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='نویسنده', related_name='articles')
     category = models.ManyToManyField('Category', verbose_name='دسته بندی', related_name='articles')
     content = models.TextField(verbose_name='متن')
     created_at = models.DateTimeField(auto_now_add=timezone.now, verbose_name='تاریخ ایجاد')
@@ -60,7 +62,7 @@ class Article(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=64, verbose_name='عنوان')
-    slug = models.SlugField(max_length=128, unique=True, verbose_name='اسلاگ')
+    slug = models.SlugField(max_length=128, unique=True, blank=True, allow_unicode=True, verbose_name='اسلاگ')
     parent = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=models.SET_NULL,
                                related_name='children', verbose_name='دسته بندی والد')
     is_active = models.BooleanField(default=True, verbose_name='فعال/غیر فعال')

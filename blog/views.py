@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from blog.models import Article, Category
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 # Create your views here.
 
-
-def home(request):
-    return render(request, 'blog/index.html')
+User = get_user_model()
 
 
 class ArticleList(ListView):

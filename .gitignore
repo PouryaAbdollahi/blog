@@ -6,3 +6,6 @@ db.sqlite3
 
 # virtualenv
 venv/
+
+# media directory
+media/
