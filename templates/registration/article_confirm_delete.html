@@ -1,0 +1,20 @@
+{% extends 'registration/base.html' %}
+{% block headTitle %}
+حذف مقاله
+{% endblock %}
+{% block main %}
+<div class="col-8 text-center mx-auto">
+    <div class="card card-danger">
+        <div class="card-header">
+        <h3 class="card-title float-left mb-0">حذف مقاله</h3>
+        </div>
+        <div class="card-body py-4">
+        <form action="" method="post">
+            {% csrf_token %}
+            <p class="py-2">آیا از حذف مقاله <span class="text-primary"><< {{ object }} >></span> مطمئین هستید؟ </p>
+            <button type="submit" class="btn btn-danger">حذف</button>
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock %}

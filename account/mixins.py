@@ -1,4 +1,6 @@
 from django.http import Http404
+from django.shortcuts import get_object_or_404
+from blog.models import Article
 
 
 class AvailableFieldsMixin:
@@ -26,3 +28,19 @@ class FormValidMixin:
             self.obj.status = 'D'
         return super().form_valid(form)
 
+
+class AuthorAccessMixin:
+    def dispatch(self, request, pk, *args, **kwargs):
+        article = get_object_or_404(Article, pk=pk)
+        if (article.author == request.user and article.status == 'D') or request.user.is_superuser:
+            return super().dispatch(request, pk, *args, **kwargs)
+        else:
+            raise Http404("You can't access this page")
+
+
+class SuperUserAccessMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise Http404("You can't access this page")

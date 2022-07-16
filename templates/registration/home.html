@@ -35,8 +35,15 @@
                   <tbody>
                     {% for article in articles %}
                         <tr style="font-size: 90%">
-                        <td>{{ article.title }}</td>
-{#                        <td>{{ article.slug }}</td>#}
+                        <td>
+                        {% if article.status == 'D' or user.is_superuser %}
+                        <a href="{% url 'account:update-article' article.pk %}">
+                            {{ article.title }}
+                        </a>
+                            {% else %}
+                            {{ article.title }}
+                        {% endif %}
+                        </td>
                         <td><img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" style="width: 120px; overflow: scroll; border-radius: 5%"></td>
                         <td>{{ article.author.get_full_name }}</td>
                         <td>{{ article.get_category }}</td>
@@ -47,8 +54,11 @@
                                 <span class="badge badge-success">منتشر شده</span>
                                 <a class="badge badge-primary" target="_blank" href="{% url 'blog:detail' article.slug %}">مشاهده مقاله در سایت</a>
                             {% else %}
-                                <span class="badge badge-danger">پیش نویس</span>
+                                <span class="badge badge-warning">پیش نویس</span>
                             {% endif %}
+                        {% if user.is_superuser %}
+                            <a class="badge badge-danger" href="{% url 'account:delete-article' article.pk %}">حذف مقاله</a>
+                        {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

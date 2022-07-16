@@ -1,4 +1,4 @@
-from account.views import ArticleList, CreateArticle
+from account.views import ArticleList, CreateArticle, ArticleUpdate, ArticleDelete
 from django.contrib.auth import views
 from django.urls import path
 
@@ -20,5 +20,7 @@ urlpatterns = [
 
 urlpatterns += [
     path('', ArticleList.as_view(), name='home'),
-    path('article/create', CreateArticle.as_view(), name='create-article')
+    path('article/create', CreateArticle.as_view(), name='create-article'),
+    path('article/update/<int:pk>', ArticleUpdate.as_view(), name='update-article'),
+    path('article/delete/<int:pk>', ArticleDelete.as_view(), name='delete-article')
 ]
