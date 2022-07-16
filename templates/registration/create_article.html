@@ -38,12 +38,14 @@
       </div>
     </div>
     <div class="row col-12">
+        {% if user.is_superuser %}
         <div class="col-3">
         {{ form.author|as_crispy_field }}
         </div>
         <div class="col-3">
         {{ form.status|as_crispy_field }}
         </div>
+        {% endif %}
         <div class="col-3">
         {{ form.publish_date|as_crispy_field }}
         </div>
