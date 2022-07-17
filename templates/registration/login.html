@@ -8,7 +8,7 @@
         <form action="{% url 'account:login' %}" method="post" class="form-account text-right">
             {% csrf_token %}
             <div class="form-account-title">
-                <label for="email-phone">ایمیل / شماره موبایل</label>
+                <label for="email-phone">نام کاربری</label>
                 {{ form.username|add_class:"number-email-input" }}
             </div>
             <div class="form-account-title">
@@ -16,9 +16,9 @@
 {#                <a href="#" class="account-link-password">رمز خود را فراموش کرده ام</a>#}
                 {{ form.password|add_class:"password-input" }}
             </div>
-
+            <a href="#" class="account-link-password">حساب کاربری ندارید؟ ثبت نام در سایت</a>
             <div class="form-row-account">
-                <button class="btn btn-primary btn-login">ورود به دیجی اسمارت</button>
+                <button class="btn btn-primary btn-login">ورود به سایت</button>
             </div>
         </form>
     </div>

@@ -1,0 +1,17 @@
+{% extends 'registration/_auth_base.html' %}
+{% block title %}
+خروج از سایت
+{% endblock %}
+{% block content %}
+<div class="Login-to-account mt-4">
+    <div class="account-box-content">
+        <h4 class="mb-2">خروج</h4>
+        <p>با موفقیت خارج شدید! از طریق لینک زیر میتوانید دوباره وارد شوید.</p>
+        <div class="form-account text-right" >
+            <div class="form-row-account">
+                <a class="btn btn-primary btn-login" href="{% url 'account:login' %}">لینک صفحه ورود</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

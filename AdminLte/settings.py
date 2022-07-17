@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # site configs:
 """ redirection """
 LOGIN_URL = ''
-LOGIN_REDIRECT_URL = 'account:home'
+LOGIN_REDIRECT_URL = 'blog:home'
 """crispy config"""
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 """authentication config"""

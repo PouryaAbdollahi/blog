@@ -2,6 +2,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 from blog.models import Article, Category
+from blog.utilities import random_string_generator
 
 
 def unique_slug_generator(instance, new_slug=None):
@@ -13,7 +14,7 @@ def unique_slug_generator(instance, new_slug=None):
     instance_class = instance.__class__
     qs = instance_class.objects.filter(slug=slug)
     if qs.exists():
-        new_slug = f'{instance.title.replace(" ", "-")}-{qs.first().id}'
+        new_slug = f'{instance.title}-{random_string_generator()}'.replace(' ', '-')
         return unique_slug_generator(instance, new_slug)
 
     return slug

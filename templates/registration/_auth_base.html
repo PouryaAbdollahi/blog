@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ورود</title>
+    <title>{% block title %}{% endblock %}</title>
     <!-- font---------------------------------------->
     <link rel="stylesheet" href="{% static 'registration/_auth/css/vendor/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/vendor/materialdesignicons.css' %}">
@@ -26,16 +26,6 @@
                     <div class="ds-userlogin">
                         <a href="#" class="account-box-logo">digismart</a>
                         <div class="account-box">
-                            <div class="account-box-headline">
-                                <a href="login.html" class="login-ds active">
-                                    <span class="title">ورود</span>
-                                    <span class="sub-title">به سایت</span>
-                                </a>
-                                <a href="register.html" class="register-ds">
-                                    <span class="title">ثبت نام</span>
-                                    <span class="sub-title">در سایت</span>
-                                </a>
-                            </div>
                             {% block content %}
                             {% endblock %}
                         </div>
